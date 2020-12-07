@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'></div>
+
+    <script>
+        // 1. Reactivity 구현
+        var app = document.querySelector('#app');
+        const vueModel = {};
+
+        // 2. Reactivity 라이브러리화
+        (function () {  // 즉시 실행 함수
+        
+            function init() {
+                Object.defineProperty(vueModel, 'str', {    // 객체의 동작을 재정의하는 api
+                    // 속성에 접근했을 때 동작을 정의 (vueModel.str에 접근)
+                    get: function() {
+                        console.log('접근');
+
+                    },
+                    // 속성에 값을 할당했을 때 동작을 정의 (vueModel.str에 값을 set)
+                    set: function(newValue) {
+                        console.log('할당', newValue);
+                        // app.innerHTML = newValue; → 함수화(render)
+                        render(newValue);   // 동일 함수인 render를 호출
+                    }
+                });
+            }
+
+            function render(value) {
+                // value = init 함수의 set속성에서 할당되는 newValue
+                app.innerHTML = value;
+            }
+
+            init(); // 호출부
+        })();
+    </script>
+</body>
+</html>

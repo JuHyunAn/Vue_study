@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header></app-header>   <!-- <h1>Header</h1> -->
+        <app-footer></app-footer>   <!-- <footer>footer</footer> -->
+    </div>
+
+    <div id="app2">
+        <app-header></app-header>   <!-- 전역 컴포넌트 : 출력 -->
+        <app-footer></app-footer>   <!-- 지역 컴포넌트 : 출력되지 않음 (#app한정...) -->
+    </div>
+    
+    <script>
+        // 컴포넌트 등록
+
+        /*  - 전역 컴포넌트 문법
+            Vue.component('tagName', {
+                'options'
+            });
+
+            - 지역 컴포넌트 문법
+            new Vue({
+                el: '',
+                components: {
+                    'tagName': {
+                        'options'
+                    }
+                }
+            })
+        */
+        
+        // 1. 전역 컴포넌트
+        Vue.component('app-header', {
+            template: '<h1>Header</h1>' // div > app-header 태그
+        });
+
+        new Vue({   // root (= instance를 생성하면, root 컴포넌트가 됨)
+            el: '#app',
+            // 2. 지역 컴포넌트
+            components: {
+                'app-footer': { // tagName
+                    template: '<footer>footer</footer>' // oprionts
+                }
+            }
+        });
+
+        new Vue({   // root
+            el: '#app2',
+            components: {
+                'app-footer': {
+                    template: '<footer>footer</footer>'
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

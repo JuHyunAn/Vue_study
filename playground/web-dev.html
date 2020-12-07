@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        // 기존 JS 구현 방식
+        var app = document.querySelector("#app");
+        var str = "hello world!!"
+        console.log(app);   // <div id="app"></div>
+
+        // innerHtml : 해당 html태그 안에 원하는 요소를 넣어서 반영
+        app.innerHTML = "hello";    // hello
+        app.innerHTML = str;    // hello world!!
+
+        str = "comment change!";
+        app.innerHTML = str;    // 내용을 변경 할 때마다, 변수를 다시 들고 오는 불편함!
+    </script>
+</body>
+</html>
